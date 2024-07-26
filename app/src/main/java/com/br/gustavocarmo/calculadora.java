@@ -31,6 +31,7 @@ public class calculadora {
              numero = getNumero();
              operadores.push(numero);
              MODO = MODO_EXIBINDO;
+             MODO - MODO_DIGITANDO;
          }
 
     }
