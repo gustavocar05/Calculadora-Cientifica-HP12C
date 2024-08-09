@@ -61,7 +61,7 @@
         app:layout_constraintStart_toEndOf="@+id/btn0" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnSoma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF9800"
@@ -82,7 +82,7 @@
         android:minWidth="48dp"
         app:icon="@drawable/baseline_backspace_24"
         app:layout_constraintBottom_toBottomOf="@+id/btn0"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/btnSoma"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnVirgula" />
 
@@ -111,7 +111,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnBackspace" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/btnSubtracao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -119,8 +119,8 @@
         android:minWidth="48dp"
         android:text="-"
         android:textAppearance="@style/TextButton"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="@+id/button5" />
+        app:layout_constraintBottom_toTopOf="@+id/btnSoma"
+        app:layout_constraintStart_toStartOf="@+id/btnSoma" />
 
     <Button
         android:id="@+id/btn2"
@@ -159,7 +159,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnVirgula" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/btnMultiplicacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -167,8 +167,8 @@
         android:minWidth="48dp"
         android:text="*"
         android:textAppearance="@style/TextButton"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintStart_toStartOf="@+id/button5" />
+        app:layout_constraintBottom_toTopOf="@+id/btnSubtracao"
+        app:layout_constraintStart_toStartOf="@+id/btnSoma" />
 
     <Button
         android:id="@+id/btn7"
@@ -183,7 +183,7 @@
         app:layout_constraintStart_toStartOf="@+id/btn0" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/btnDivisao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -191,8 +191,8 @@
         android:minWidth="48dp"
         android:text="/"
         android:textAppearance="@style/TextButton"
-        app:layout_constraintBottom_toTopOf="@+id/button13"
-        app:layout_constraintStart_toStartOf="@+id/button5" />
+        app:layout_constraintBottom_toTopOf="@+id/btnMultiplicacao"
+        app:layout_constraintStart_toStartOf="@+id/btnSoma" />
 
     <Button
         android:id="@+id/btn8"
@@ -219,7 +219,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnBackspace" />
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

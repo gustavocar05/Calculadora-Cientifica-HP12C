@@ -76,19 +76,17 @@ public class MainActivity extends AppCompatActivity {
             inicioSelecao = Math.max(inicioSelecao, 0);
 
             int finalSelecao = visor.getSelectionEnd();
-            if (inicioSelecao == finalSelecao){
+            if (inicioSelecao == finalSelecao) {
                 visor.getText().delete(inicioSelecao - 1, finalSelecao);
-            }
-            else{
+            } else {
                 visor.getText().delete(inicioSelecao, finalSelecao);
             }
-
+            atualizarNumero();
         }));
 
         btnEnter.setOnClickListener(view -> {
             double valor = Double.valueOf(visor.getText().toString());
 
-            calculadora.setNumero(valor);
             calculadora.enter();
         });
     }
@@ -96,15 +94,10 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener botaoClick(final String id) {
         return (v) -> {
             String value = visor.getText().toString();
-            if (value == "0"){
-                int inicioSelecaocase0 = visor.getSelectionStart();
-                inicioSelecaocase0 = Math.max(inicioSelecaocase0, 0);
-                int finalSelecao = visor.getSelectionEnd();
-                int inicioSelecao = visor.getSelectionStart();
-                visor.getText().delete(inicioSelecaocase0 -1, finalSelecao);
-                visor.getText().replace(inicioSelecao, finalSelecao, id);
-            }
-            else{
+            Log.d("Vericar valor", "Valor do visor: " + value);
+            if (value.equals("0")) {
+                visor.setText(id);
+            } else {
 
 
                 int inicioSelecao = visor.getSelectionStart();
@@ -112,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
 
                 visor.getText().replace(inicioSelecao, finalSelecao, id);
             }
+            atualizarNumero();
         };
     }
+
+    public void atualizarNumero() {
+        String s = visor.getText().toString();
+        s = "".equals(s) ? "0" : s;
+        calculadora.setNumero(Double.valueOf(s));
+    }
+
 }

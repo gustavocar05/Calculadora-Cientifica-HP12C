@@ -1,6 +1,8 @@
 package com.br.gustavocarmo;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Optional;
+import java.util.function.BiFunction;
 
 public class calculadora {
     private double numero;
@@ -8,75 +10,67 @@ public class calculadora {
 
     public int MODO;
     public final int MODO_EXIBINDO = 0;
+    public final int MODO_ERRO = 1;
     public final int MODO_DIGITANDO = 1;
     Deque<Double> operadores = new LinkedList<>();
 
-     public calculadora(double numero){
+    public calculadora(double numero) {
         this.numero = numero;
         MODO = MODO_EXIBINDO;
     }
 
-    public void setNumero(double numero){
-         this.numero = numero;
-         MODO = MODO_DIGITANDO;
+    public void setNumero(double numero) {
+        this.numero = numero;
+        MODO = MODO_DIGITANDO;
 
     }
 
-    public double getNumero(){
-         return this.numero;
+    public double getNumero() {
+        return this.numero;
     }
 
-    public void enter(){
-         if(MODO == 1) {
-             numero = getNumero();
-             operadores.push(numero);
-             MODO = MODO_EXIBINDO;
+    public void enter() {
+        if (MODO == 1) {
+            numero = getNumero();
+            operadores.push(numero);
+            MODO = MODO_EXIBINDO;
 
-         }
+        }
 
+    }
+
+    protected void executarOperacao(BiFunction<Double, Double, Double> operacao) {
+
+        if (MODO == MODO_DIGITANDO || MODO == MODO_ERRO) {
+            enter();
+        }
+        Double op1 = Optional.ofNullable(operadores.pollFirst()).orElse(0.0); // obtém o primeiro operando
+        Double op2 = Optional.ofNullable(operadores.pollFirst()).orElse(0.0); // obtém o segundo operando
+
+        // Executa a operação e armazena o resultado
+        Double resultado = operacao.apply(op1, op2);
+
+        // Opcionalmente, insere o resultado de volta na fila ou processa-o conforme necessário
+        operadores.addFirst(resultado);
     }
 
     public void somar() {
 
-        if(MODO == 1) {
-            enter();
-        }
-        double numero1 = operadores.pop();
-        double numero2 = operadores.pop();
-        double soma = numero1+numero2;
-        operadores.push(soma);
+        executarOperacao((op1, op2) -> op2 + op1);
     }
 
     public void multiplicar() {
 
-        if(MODO == 1) {
-            enter();
-        }
-        double numero1 = operadores.pop();
-        double numero2 = operadores.pop();
-        double multiplicacao = numero1*numero2;
-        operadores.push(multiplicacao);
+        executarOperacao((op1, op2) -> op2 * op1);
     }
 
     public void divisao() {
 
-        if(MODO == 1) {
-            enter();
-        }
-        double numero1 = operadores.pop();
-        double numero2 = operadores.pop();
-        double dividir = numero1/numero2;
-        operadores.push(dividir);
+        executarOperacao((op1, op2) -> op2 / op1);
     }
 
     public void subtracao() {
 
-        if(MODO == 1) {
-            enter();
-        }
-        double numero1 = operadores.pop();
-        double numero2 = operadores.pop();
-        double dividir = numero1-numero2;
-        operadores.push(dividir);
+        executarOperacao((op1, op2) -> op2 - op1);
     }
 }
