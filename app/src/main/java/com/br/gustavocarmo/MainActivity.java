@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
     private Button btn0;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEnter;
     private Button btnBackspace;
 
-    calculadora calculadora = new calculadora(0);
+    Calculadora calculadora = new ViewModelProvider(this).get(Calculadora.class);
     private EditText visor;
 
     @Override
@@ -85,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         btnEnter.setOnClickListener(view -> {
-            double valor = Double.valueOf(visor.getText().toString());
 
             calculadora.enter();
         });

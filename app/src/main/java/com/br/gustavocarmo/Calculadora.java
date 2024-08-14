@@ -1,10 +1,12 @@
 package com.br.gustavocarmo;
+import androidx.lifecycle.ViewModel;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.BiFunction;
 
-public class calculadora {
+public class Calculadora extends ViewModel {
     private double numero;
 
 
@@ -14,7 +16,7 @@ public class calculadora {
     public final int MODO_DIGITANDO = 1;
     Deque<Double> operadores = new LinkedList<>();
 
-    public calculadora(double numero) {
+    public Calculadora(double numero) {
         this.numero = numero;
         MODO = MODO_EXIBINDO;
     }
